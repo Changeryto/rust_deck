@@ -1,15 +1,4 @@
-/* Se pretende incorporar las funciones:
- *  Objeto: deck - Representa una coleccion de cartas jugables
- *  new() - Crea un nuevo objeto deck que contiene una lista de cartas jugables
- * shuffle() - Cambia el orden de las cartas en el seck
- *  deal() - Remueve algunas cartas del deck y las regresa en una nueva lista.
- */ 
-
- // cargo add rand
-use rand::{thread_rng, seq::SliceRandom};
-
-
- // Struct necesitan empezar con una mayuscula
+// Struct necesitan empezar con una mayuscula
  // cards: Lista de campos que este struct va a contener
  // Vec<String> Vector (arreglo que puede cambiar de tamanio) que va a contener Strings.
  
@@ -50,41 +39,7 @@ impl Deck {
     }
 
     // Metodo (similar a metodo de clase), usar cuando se debe asociar a una instancia
-    // &mut indica que debemos recibir una forma mutable del self
-    fn shuffle(&mut self){
-        let mut rng = thread_rng();
-        self.cards.shuffle(&mut rng);
-    }
-
-    // usize es un tipo unsigned del tamanio de bits de la placa madre.
-    fn deal(&mut self, num_cards: usize) -> Vec<String> {
-        return self.cards.split_off(
-            self.cards.len() - num_cards
-        );
+    fn shuffle(&self){
+        
     }
 }
-
-fn main() {
-
-
-    // Se instancia un deck
-    // inicializa nomre: tipo = Struct { requerimiento: vecMacro![vacio] }
-    let mut deck: Deck = Deck::new(); 
-    // Debe ser mut ya que shuffle debe poder cambiarlo
-
-    // Cambia el orden de las cartas llamando a shuffle
-    deck.shuffle();
-    // Alternativa:
-    // let deck: Deck = Deck { cards: Vec::new() };
-    print!("Tu mano - {:#?}", deck);
-    // {:?} solo debe usarse en debug
-    // {:#?} permite impresion 1 a 
-    // TODO: Error handeling para intentar subtraer en un overflow
-    print!("Descarto 20 cartas {:#?}", deck.deal(20));
-    print!("Resto de tu mano - {:#?}", deck);
-}
-
-
-// Mutable vs inmutable
-// Inmutable: Por default, no puede modificarse ni cambiarse ahead of time.
-// Mutable: Debe declararse.
